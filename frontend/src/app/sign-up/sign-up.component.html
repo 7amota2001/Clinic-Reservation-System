@@ -1,0 +1,73 @@
+<!-- <div>
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="signUp()">
+      <div>
+        <label for="username">username</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+      </div>
+      <div>
+        <label>User Type</label>
+        <div>
+          <input type="radio" id="patient" [(ngModel)]="userType" name="userType" value="patient">
+          <label for="patient">Patient</label>
+        </div>
+        <div>
+          <input type="radio" id="doctor" [(ngModel)]="userType" name="userType" value="doctor">
+          <label for="doctor">Doctor</label>
+        </div>
+      </div>
+      <button type="submit">Sign Up</button>
+    </form>
+    
+  </div> -->
+  <!-- sign-up.component.html -->
+  <div>
+    <h2>Sign Up</h2>
+    <form (ngSubmit)="signUp()">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" [(ngModel)]="username" name="username" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" [(ngModel)]="email" name="email" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" [(ngModel)]="password" name="password" required>
+      </div>
+      <div>
+        <label for="userType">User Type:</label>
+        <select id="userType" [(ngModel)]="userType" name="userType">
+          <option [ngValue]="true">Patient</option>
+          <option [ngValue]="false">Doctor</option>
+        </select>
+      </div>
+      <div *ngIf="isDoctor()">
+        <!-- Content for doctors -->
+        <p>Welcome, Doctor!</p>
+        <!-- Add more content specific to doctors -->
+      </div>
+  
+      <div *ngIf="!isDoctor()">
+        <!-- Content for patients -->
+        <p>Welcome, Patient!</p>
+        <!-- Add more content specific to patients -->
+      </div>
+  
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+  
+  
+
+  
+  

@@ -1,0 +1,132 @@
+<div class="m-2 p-2">
+  <label for="doctor" class="m-2">Doctor:</label>
+  <select
+    name="doctor"
+    id="doctor"
+    required
+    [(ngModel)]="selectedDoctor"
+    (change)="getDoctorSlots(selectedDoctor)"
+  >
+    <option value="" disabled>Select A Doctor</option>
+    <option *ngFor="let doc of doctors" [value]="doc">
+      {{ doc }}
+    </option>
+  </select>
+
+  <label for="showslot" class="m-2">Available Slots:</label>
+  <select 
+    name="showslot"
+    id="showslot"
+    required
+    [(ngModel)]="selectedSlotId"
+  >
+    <option *ngFor="let slot of doctorSlots" [value]="slot.slot_id">
+      {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}
+    </option>
+  </select>
+
+  <button
+    type="button" 
+    class="d-inline btn btn-primary m-2"
+    (click)="chooseSlot()"
+  >
+    Choose Slot
+  </button>
+
+  <!-- Button to trigger updateAppointment() -->
+  <label for="doctor" class="m-2">Doctor:</label>
+  <select
+    name="doctor"
+    id="doctor"
+    required
+    [(ngModel)]="newDoctorName"
+    (change)="getDoctorSlots(newDoctorName)"
+  >
+    <option value="" disabled>Select A Doctor</option>
+    <option *ngFor="let doc of doctors" [value]="doc">
+      {{ doc }}
+    </option>
+  </select>
+
+  <label for="showslot" class="m-2">New Slots:</label>
+  <select 
+    name="showslot"
+    id="showslot"
+    required
+    [(ngModel)]="newSlotId"
+  >
+    <option *ngFor="let slot of doctorSlots" [value]="slot.slot_id">
+      {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}
+    </option>
+  </select>
+
+  <label for="showslot" class="m-2">Old Slots:</label>
+  <select 
+    name="showslot"
+    id="showslot"
+    required
+    [(ngModel)]="selectedPatientSlotId"
+    (change)="selectPatientSlot(selectedPatientSlotId)"
+  >
+    <option *ngFor="let slot of patientSlots" [value]="slot.slot_id">
+      {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}
+    </option>
+  </select>
+
+  <button
+    type="button" 
+    class="d-inline btn btn-warning m-2"
+    (click)="updateAppointment()"
+  >
+    Update Appointment
+  </button>
+
+  <label for="showslot" class="m-2">Old Slots:</label>
+  <select 
+    name="showslot"
+    id="showslot"
+    required
+    [(ngModel)]="selectedPatientSlotId"
+    (change)="selectPatientSlot(selectedPatientSlotId)"
+  >
+    <option *ngFor="let slot of patientSlots" [value]="slot.slot_id">
+      {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}
+    </option>
+  </select>
+
+  <button
+    type="button" 
+    class="d-inline btn btn-warning m-2"
+    (click)="cancelAppointment()"
+  >
+    Cancel Appointment
+  </button>
+
+  <button
+  type="submit"
+  class="d-inline btn btn-danger position-absolute"
+  style="right: 70px"
+  (click)="logout()"
+  >
+  <span class="">Logout</span>
+</button>
+</div>
+
+<div class="m-2 p-2">
+  <!-- Button to trigger getPatientSlots() -->
+  <button
+  type="button"
+  class="btn btn-primary"
+  (click)="getPatientSlots()"
+  >
+  Get Patient Slots
+  </button>
+  <div *ngIf="selectedSlots.length > 0">
+    <h3>Selected Patient Slots:</h3>
+    <ul>
+      <li *ngFor="let slot of selectedSlots">
+        {{ slot.date }} {{ slot.start_time }} - {{ slot.end_time }}
+      </li>
+    </ul>
+  </div>
+</div>
